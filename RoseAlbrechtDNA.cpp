@@ -46,8 +46,10 @@ int main()
 		double ggCount = 0;
 		string str;
 		//count the number of each nucleotide as well as number of lines in input file and number of total characters in input file and all the nucleotide bigrams present
+		//i know excuses arent your thing but for some reason at 11:40 we stopped being able to enter this for loop
 		while (getline(inputfile, str))
 		{
+			cout<<"made it into getline";
 			lineCount +=1;
 			string previousLetter = "x";
 			//iterate through characters in lines
@@ -156,8 +158,6 @@ int main()
 				previousLetter = letter;
 			}
 				//need the existence of a previous letter to be deleted every time we go to a new line
-			//string previousLetter = "";
-			//string letter = "";
 			//iterate through characters in lines then concatenate current letter to previous letter to see frequency of bi grams
 			for (std::string::size_type i = 0; i < str.size(); i++)
 			{
@@ -167,13 +167,13 @@ int main()
 		double lineMean = (totalCount)/(lineCount);
 		double varianceNumerator = 0;
 		//calculate the variance and standard deviation
-		/*while (getline(inputfile, str))
+		while (getline(inputfile, str))
 		{
 			//cout<<"made it into varianceNumerator while loop"<<varianceNumerator;
 			//this would have told us that we entered this while loop
 			//then it would loop through and find the numerator for the variance
 			double varianceNumerator = varianceNumerator + ((str.length()-lineMean)*(str.length()-lineMean));
-		}*/
+		}
 		//define variables and calculate relative frequencys 
 		double stdDev = 0;
 		double lineVariance = 0;
@@ -213,7 +213,7 @@ int main()
 		outputfile << "Relative probability of nucleotide C: " << cRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide T: " << tRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide G: " << gRelative << "%" << "\n"<<endl;
-		outputfile << "Relative probability of nucleotide bigram AA: " << aaRelative << aaCount<< "%" << "\n"<<endl;
+		outputfile << "Relative probability of nucleotide bigram AA: " << aaRelative<< "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram AC: " << acRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram AT: " << atRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram AG: " << agRelative << "%" << "\n"<<endl;
