@@ -1,3 +1,4 @@
+//Rose Albrecht CPSC350 2300456 Assignment1
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -18,24 +19,40 @@ int main()
 		cin >> filename;
 		//initiate files into the file reading interface
 		ifstream inputfile;
-		inputfile.open("filename.txt");
+		inputfile.open(filename);
 		//initialize counting variables
-		int lineCount;
-		int aCount;
-		int cCount;
-		int tCount;
-		int gCount;
-		int totalCount;
+		double lineCount = 0;
+		double aCount = 0;
+		double cCount = 0;
+		double tCount = 0;
+		double gCount = 0;
+		double totalCount = 0;
+		double bigramTotal;
+		double aaCount = 0;
+		double acCount = 0;
+		double atCount = 0;
+		double agCount = 0;
+		double caCount = 0;
+		double ccCount = 0;
+		double ctCount = 0;
+		double cgCount = 0;
+		double taCount = 0;
+		double tcCount = 0;
+		double ttCount = 0;
+		double tgCount = 0;
+		double gaCount = 0;
+		double gcCount = 0;
+		double gtCount = 0;
+		double ggCount = 0;
 		string str;
-		//count the number of each nucleotide as well as number of lines in input file and number of total characters in input file
+		//count the number of each nucleotide as well as number of lines in input file and number of total characters in input file and all the nucleotide bigrams present
 		while (getline(inputfile, str))
 		{
 			lineCount +=1;
+			string previousLetter = "x";
 			//iterate through characters in lines
-			cout<<"made it into while loop";
 			for (char letter : str)
 			{
-				cout<<"made it into for loop";
 				totalCount +=1;
 				toupper(letter);
 				if (letter == 'A')
@@ -54,143 +71,135 @@ int main()
 				{
 					gCount+=1;
 				}
+				//count bigrams
+				string letterString(1, letter);
+				if (previousLetter + letter == "AA")
+				{
+					aaCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "AC")
+				{
+					acCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "AT")
+				{
+					atCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "AG")
+				{
+					agCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "CA")
+				{
+					caCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "CC")
+				{
+					ccCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "CT")
+				{
+					ctCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "CG")
+				{
+					cgCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "TA")
+				{
+					taCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "TC")
+				{
+					tcCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "TT")
+				{
+					ttCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "TG")
+				{
+					tgCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "GA")
+				{
+					gaCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "GC")
+				{
+					gcCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "GT")
+				{
+					gtCount+=1;
+					bigramTotal +=1;
+				}
+				if (previousLetter + letter == "GG")
+				{
+					ggCount+=1;
+					bigramTotal +=1;
+				}
+				previousLetter = letter;
 			}
-		}
-		cout << lineCount<<"\n";
-		int lineMean = (totalCount)/(lineCount);
-		int varianceNumerator;
-		double lineVariance;
-		double stdDev;
-		//calculate the variance and standard deviation
-		while (std::getline(inputfile, str))
-		{
-			varianceNumerator += ((str.length()-lineMean)^2);
-		}
-		lineVariance = varianceNumerator / lineCount;
-		stdDev = sqrt(lineVariance);
-		//calculate the relative occurrence of each nucleotide
-		cout << "line70"<<"\n";
-		int aRelative = 100*aCount/totalCount;
-		int cRelative = 100*cCount/totalCount;
-		int tRelative = 100*tCount/totalCount;
-		int gRelative = 100*gCount/totalCount;
-		//count nucleotide bi grams
-		// because we have to be able to compare a string with
-		cout << "line77"<<"\n";		
-		int bigramTotal;
-		int aaCount = 0;
-		int acCount = 0;
-		int atCount = 0;
-		int agCount = 0;
-		int caCount = 0;
-		int ccCount = 0;
-		int ctCount = 0;
-		int cgCount = 0;
-		int taCount = 0;
-		int tcCount = 0;
-		int ttCount = 0;
-		int tgCount = 0;
-		int gaCount = 0;
-		int gcCount = 0;
-		int gtCount = 0;
-		int ggCount = 0;
-		cout << "line100"<<"\n";
-		while (std::getline(inputfile, str))
-		{
-			//need the existence of a previous letter to be deleted every time we go to a new line
-			string previousLetter = "";
-			string currentLetter = "";
+				//need the existence of a previous letter to be deleted every time we go to a new line
+			//string previousLetter = "";
+			//string letter = "";
 			//iterate through characters in lines then concatenate current letter to previous letter to see frequency of bi grams
 			for (std::string::size_type i = 0; i < str.size(); i++)
 			{
-				currentLetter = str[i];
-				bigramTotal +=1;
-				if (previousLetter + currentLetter == "AA")
-				{
-					aaCount+=1;
-				}
-				if (previousLetter + str[i] == "AC")
-				{
-					acCount+=1;
-				}
-				if (previousLetter + str[i] == "AT")
-				{
-					atCount+=1;
-				}
-				if (previousLetter + str[i] == "AG")
-				{
-					agCount+=1;
-				}
-				if (previousLetter + str[i] == "CA")
-				{
-					caCount+=1;
-				}
-				if (previousLetter + str[i] == "CC")
-				{
-					ccCount+=1;
-				}
-				if (previousLetter + str[i] == "CT")
-				{
-					ctCount+=1;
-				}
-				if (previousLetter + str[i] == "CG")
-				{
-					cgCount+=1;
-				}
-				if (previousLetter + str[i] == "TA")
-				{
-					taCount+=1;
-				}
-				if (previousLetter + str[i] == "TC")
-				{
-					tcCount+=1;
-				}
-				if (previousLetter + str[i] == "TT")
-				{
-					ttCount+=1;
-				}
-				if (previousLetter + str[i] == "TG")
-				{
-					tgCount+=1;
-				}
-				if (previousLetter + str[i] == "GA")
-				{
-					gaCount+=1;
-				}
-				if (previousLetter + str[i] == "GC")
-				{
-					gcCount+=1;
-				}
-				if (previousLetter + str[i] == "GT")
-				{
-					gtCount+=1;
-				}
-				if (previousLetter + str[i] == "GG")
-				{
-					ggCount+=1;
-				}
-				previousLetter = currentLetter;
+				
 			}
 		}
-		cout << "line170"<<"\n";
+		double lineMean = (totalCount)/(lineCount);
+		double varianceNumerator = 0;
+		//calculate the variance and standard deviation
+		/*while (getline(inputfile, str))
+		{
+			//cout<<"made it into varianceNumerator while loop"<<varianceNumerator;
+			//this would have told us that we entered this while loop
+			//then it would loop through and find the numerator for the variance
+			double varianceNumerator = varianceNumerator + ((str.length()-lineMean)*(str.length()-lineMean));
+		}*/
+		//define variables and calculate relative frequencys 
+		double stdDev = 0;
+		double lineVariance = 0;
+		lineVariance = varianceNumerator / lineCount;
+		stdDev = sqrt(lineVariance);
+		double aRelative = 100*aCount/totalCount;
+		double cRelative = 100*cCount/totalCount;
+		double tRelative = 100*tCount/totalCount;
+		double gRelative = 100*gCount/totalCount;
 		//calculate the relative probability of each nucleotide bigram 
-		int aaRelative = 100*aaCount/bigramTotal;
-		int acRelative = 100*acCount/bigramTotal;
-		int atRelative = 100*atCount/bigramTotal;
-		int agRelative = 100*agCount/bigramTotal;
-		int caRelative = 100*caCount/bigramTotal;
-		int ccRelative = 100*ccCount/bigramTotal;
-		int ctRelative = 100*ctCount/bigramTotal;
-		int cgRelative = 100*cgCount/bigramTotal;
-		int taRelative = 100*taCount/bigramTotal;
-		int tcRelative = 100*tcCount/bigramTotal;
-		int ttRelative = 100*ttCount/bigramTotal;
-		int tgRelative = 100*tgCount/bigramTotal;
-		int gaRelative = 100*gaCount/bigramTotal;
-		int gcRelative = 100*gcCount/bigramTotal;
-		int gtRelative = 100*gtCount/bigramTotal;
-		int ggRelative = 100*ggCount/bigramTotal;
-		cout << "line190"<<"\n";
+		double aaRelative = 100*aaCount/bigramTotal;
+		double acRelative = 100*acCount/bigramTotal;
+		double atRelative = 100*atCount/bigramTotal;
+		double agRelative = 100*agCount/bigramTotal;
+		double caRelative = 100*caCount/bigramTotal;
+		double ccRelative = 100*ccCount/bigramTotal;
+		double ctRelative = 100*ctCount/bigramTotal;
+		double cgRelative = 100*cgCount/bigramTotal;
+		double taRelative = 100*taCount/bigramTotal;
+		double tcRelative = 100*tcCount/bigramTotal;
+		double ttRelative = 100*ttCount/bigramTotal;
+		double tgRelative = 100*tgCount/bigramTotal;
+		double gaRelative = 100*gaCount/bigramTotal;
+		double gcRelative = 100*gcCount/bigramTotal;
+		double gtRelative = 100*gtCount/bigramTotal;
+		double ggRelative = 100*ggCount/bigramTotal;
 		outputfile << "Input Statistics: "<<"\n"<<endl;
 		outputfile << "a count value: "<<aCount<<endl;
 		outputfile << "c count value: "<<cCount<<endl;
@@ -204,7 +213,7 @@ int main()
 		outputfile << "Relative probability of nucleotide C: " << cRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide T: " << tRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide G: " << gRelative << "%" << "\n"<<endl;
-		outputfile << "Relative probability of nucleotide bigram AA: " << aaRelative << "%" << "\n"<<endl;
+		outputfile << "Relative probability of nucleotide bigram AA: " << aaRelative << aaCount<< "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram AC: " << acRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram AT: " << atRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram AG: " << agRelative << "%" << "\n"<<endl;
@@ -220,15 +229,15 @@ int main()
 		outputfile << "Relative probability of nucleotide bigram GC: " << gcRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram GT: " << gtRelative << "%" << "\n"<<endl;
 		outputfile << "Relative probability of nucleotide bigram GG: " << ggRelative << "%" << "\n"<<endl;
-		cout << "line215"<<"\n";
-		//need to add all the information that needs to be printed
 		//create 1000 lines of dna
 		for(int i=0; i<1000; i++)
 		{
+			//follow the formula on the assignment sheet
 			double A = 1.0*rand()/RAND_MAX;
 			double B = 1.0*rand()/RAND_MAX;
 			double C = sqrt(-2*log(A))*cos(2*3.14159*B);
 			double D = stdDev + C + lineMean;
+			//we will use this to randomize a percent number
 			double letterDecision;
 			if (D<0)//i want to make sure our d value isnt negative because it makes an infinite ammount of T's print...
 			{
@@ -236,33 +245,36 @@ int main()
 			}
 			for (int charPrint=0; charPrint<D; charPrint++)
 			{
+				letterDecision = rand() %100;
+				//this breaks up the probability that we get a nucleotide into the probability we calculated above
 				if (letterDecision < aRelative)
 				{
 					outputfile<< "A";
 				}
-				else if (letterDecision < aRelative + cRelative)
+				if (aRelative < letterDecision && letterDecision < (aRelative + cRelative))
 				{
 					outputfile << "C";
 				}
-				else if (letterDecision < aRelative + cRelative + tRelative)
+				if ((aRelative + cRelative)< letterDecision && letterDecision < (aRelative + cRelative + tRelative))
 				{
 					outputfile << "T";
 				}
-				else
+				if ((aRelative + cRelative + tRelative)<letterDecision)
 				{
 					outputfile << "G";
 				}
 			}
+			outputfile<<"\n";
 		}
-		cout << "line250"<<"\n";
+		//gives the option to loop another file through
 		cout << "would you like to run another file (y or n)?"<<"\n";
 		char continueReading;
 		cin >> continueReading;
 		if (continueReading == 'n')
 		{
+			//will break out of analysis while loop if we do not want to run another file
 			analyze = false;
 		}
-		
 	}
 }
 	
