@@ -46,10 +46,10 @@ int main()
 		double ggCount = 0;
 		string str;
 		//count the number of each nucleotide as well as number of lines in input file and number of total characters in input file and all the nucleotide bigrams present
-		//i know excuses arent your thing but for some reason at 11:40 we stopped being able to enter this for loop
-		while (getline(inputfile, str))
+		//i know excuses arent your thing but for some reason at 11:40 we stopped being able to enter this for loop and comparing it to the other versions theres nothing above it thats different
+		while (std::getline(inputfile, str))
 		{
-			cout<<"made it into getline";
+			//cout<<"made it into getline";
 			lineCount +=1;
 			string previousLetter = "x";
 			//iterate through characters in lines
@@ -164,6 +164,7 @@ int main()
 				
 			}
 		}
+		
 		double lineMean = (totalCount)/(lineCount);
 		double varianceNumerator = 0;
 		//calculate the variance and standard deviation
@@ -174,7 +175,7 @@ int main()
 			//then it would loop through and find the numerator for the variance
 			double varianceNumerator = varianceNumerator + ((str.length()-lineMean)*(str.length()-lineMean));
 		}
-		//define variables and calculate relative frequencys 
+		//define variables and calculate relative frequency 
 		double stdDev = 0;
 		double lineVariance = 0;
 		lineVariance = varianceNumerator / lineCount;

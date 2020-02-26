@@ -1,5 +1,6 @@
 Rose Albrecht CPSC350 2300456 Assignment1
 README
+this does not accept lower case letters and its due now so this is what you get
 something is wrong and i cant get the program to enter a while loop a second time to iterate through the lines to produce the variance effectively and therefore i cannot produce a standard deviation or variance however the code to do it s present.
 http://www.cplusplus.com/forum/general/211397/
 	used as a reference on how to read a file in for analysis
